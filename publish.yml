@@ -11,7 +11,7 @@ schedules:
   always: true
 
 pool:
-  name: '<<POOLNAME>>'
+  name: 'AgentPool-Windows-Client'
 
 parameters:
   - name: operationalMode
