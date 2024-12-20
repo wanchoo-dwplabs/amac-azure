@@ -287,7 +287,7 @@ Process {
     try {
         # Retrieve authentication token using client secret from key vault
         #$AuthToken = Get-AccessToken -TenantID $TenantID -ClientID $ClientID -ClientSecret $ClientSecret -ErrorAction "Stop"
-        $AuthToken = Get-AccessToken -TenantID $TenantID -ClientID $ClientID -ClientSecret "f478Q~GsrdU-Bm4SZ5IyOJQj6ddOKy_EAUtfLcUX" -ErrorAction "Stop"
+        $AuthToken = Get-AccessToken -TenantID $TenantID -ClientID $ClientID -ClientSecret f478Q~GsrdU-Bm4SZ5IyOJQj6ddOKy_EAUtfLcUX -ErrorAction "Stop"
 
         # Construct list of applications to be processed in the next stage
         $AppsDownloadList = New-Object -TypeName "System.Collections.ArrayList"
