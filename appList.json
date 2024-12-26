@@ -42,5 +42,14 @@
                 }
             ]
         }
+        {
+            "IntuneAppName": "Vim",
+            "IntuneAppNamingConvention": "AppNameAndVersion",
+            "AppPublisher": "Bram Moolenaar",
+            "AppSource": "Winget",
+            "AppID": "vim.vim",
+            "AppFolderName": "Vim",
+            "AppSetupFileName": "gvim_x64.exe"
+        }
     ]
 }
