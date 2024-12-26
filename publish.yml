@@ -3,8 +3,8 @@ name: IntuneAppFactory
 trigger: none
 
 schedules:
-- cron: "0 */12 * * *"
-  displayName: Every 12 hours
+- cron: "0 */24 * * *"
+  displayName: Every 24 hours
   branches:
     include:
     - main
