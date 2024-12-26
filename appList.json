@@ -49,7 +49,7 @@
             "AppSource": "Winget",
             "AppID": "vim.vim",
             "AppFolderName": "Vim",
-            "AppSetupFileName": "gvim_x64.exe"
+            "AppSetupFileName": "gvim_x64.exe",
         }
     ]
 }
