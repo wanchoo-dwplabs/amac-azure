@@ -50,6 +50,17 @@
             "AppID": "vim.vim",
             "AppFolderName": "Vim",
             "AppSetupFileName": "gvim_x64.exe"
+        },
+        {
+            "IntuneAppName": "Filezilla",
+            "IntuneAppNamingConvention": "AppNameAndVersion",
+            "AppPublisher": "Tim Kosse",
+            "AppSource": "StorageAccount",
+            "AppID": "",
+            "AppFolderName": "Filezilla",
+            "AppSetupFileName": "filezilla_win64.exe",
+            "StorageAccountName": "azurefactoryappsstorage",
+            "StorageAccountContainerName": "filezilla"
         }
     ]
 }
