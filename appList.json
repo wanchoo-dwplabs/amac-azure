@@ -1,6 +1,6 @@
 {
     "Apps": [
-        {
+        /*{
             "IntuneAppName": "7-Zip",
             "IntuneAppNamingConvention": "PublisherAppNameAppVersion",
             "AppPublisher": "Igor Pavlov",
@@ -13,8 +13,8 @@
                     "Type": "msi"
                 }
             ]
-        },
-        {
+        },*/
+        /*{
             "IntuneAppName": "Notepad++",
             "IntuneAppNamingConvention": "AppName",
             "AppPublisher": "Don Ho",
@@ -27,8 +27,8 @@
                     "Type": "exe"
                 }
             ]
-        },
-        {
+        },*/
+        /*{
             "IntuneAppName": "VLC",
             "IntuneAppNamingConvention": "AppNameAndVersion",
             "AppPublisher": "VideoLAN",
@@ -41,7 +41,7 @@
                     "Type": "msi"
                 }
             ]
-        },
+        },*/
         {
             "IntuneAppName": "Vim",
             "IntuneAppNamingConvention": "AppNameAndVersion",
