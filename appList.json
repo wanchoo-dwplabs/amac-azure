@@ -1,66 +1,24 @@
 {
-    "Apps": [
-        /*{
-            "IntuneAppName": "7-Zip",
-            "IntuneAppNamingConvention": "PublisherAppNameAppVersion",
-            "AppPublisher": "Igor Pavlov",
-            "AppSource": "Evergreen",
-            "AppID": "7zip",
-            "AppFolderName": "7zip",
-            "FilterOptions": [
-                {
-                    "Architecture": "x64",
-                    "Type": "msi"
-                }
-            ]
-        },*/
-        /*{
-            "IntuneAppName": "Notepad++",
-            "IntuneAppNamingConvention": "AppName",
-            "AppPublisher": "Don Ho",
-            "AppSource": "Evergreen",
-            "AppID": "NotepadPlusPlus",
-            "AppFolderName": "NotepadPlusPlus",
-            "FilterOptions": [
-                {
-                    "Architecture": "x64",
-                    "Type": "exe"
-                }
-            ]
-        },*/
-        /*{
-            "IntuneAppName": "VLC",
-            "IntuneAppNamingConvention": "AppNameAndVersion",
-            "AppPublisher": "VideoLAN",
-            "AppSource": "Evergreen",
-            "AppID": "VideoLanVlcPlayer",
-            "AppFolderName": "VLC",
-            "FilterOptions": [
-                {
-                    "Architecture": "x64",
-                    "Type": "msi"
-                }
-            ]
-        },*/
-        {
-            "IntuneAppName": "Vim",
-            "IntuneAppNamingConvention": "AppNameAndVersion",
-            "AppPublisher": "Bram Moolenaar",
-            "AppSource": "Winget",
-            "AppID": "vim.vim",
-            "AppFolderName": "Vim",
-            "AppSetupFileName": "gvim_x64.exe"
-        },
-        {
-            "IntuneAppName": "Filezilla",
-            "IntuneAppNamingConvention": "AppNameAndVersion",
-            "AppPublisher": "Tim Kosse",
-            "AppSource": "StorageAccount",
-            "AppID": "",
-            "AppFolderName": "Filezilla",
-            "AppSetupFileName": "filezilla_win64.exe",
-            "StorageAccountName": "azurefactoryappsstorage",
-            "StorageAccountContainerName": "filezilla"
-        }
-    ]
+  "Apps": [
+    {
+      "IntuneAppName": "Vim",
+      "IntuneAppNamingConvention": "AppNameAndVersion",
+      "AppPublisher": "Bram Moolenaar",
+      "AppSource": "Winget",
+      "AppID": "vim.vim",
+      "AppFolderName": "Vim",
+      "AppSetupFileName": "gvim_x64.exe"
+    },
+    {
+      "IntuneAppName": "Filezilla",
+      "IntuneAppNamingConvention": "AppNameAndVersion",
+      "AppPublisher": "Tim Kosse",
+      "AppSource": "StorageAccount",
+      "AppID": "",
+      "AppFolderName": "Filezilla",
+      "AppSetupFileName": "filezilla_win64.exe",
+      "StorageAccountName": "azurefactoryappsstorage",
+      "StorageAccountContainerName": "filezilla"
+    }
+  ]
 }
