@@ -8,6 +8,15 @@
       "AppID": "vim.vim",
       "AppFolderName": "Vim",
       "AppSetupFileName": "gvim_x64.exe"
+    },
+    {
+      "IntuneAppName": "PuTTY",
+      "IntuneAppNamingConvention": "AppNameAndVersion",
+      "AppPublisher": "Simon Tatham",
+      "AppSource": "Winget",
+      "AppID": "PuTTY.PuTTY",
+      "AppFolderName": "Putty",
+      "AppSetupFileName": "putty_win.msi"
     }
   ]
 }
