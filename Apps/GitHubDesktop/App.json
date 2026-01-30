@@ -32,7 +32,7 @@
         {
             "Type": "Registry",
             "DetectionMethod": "VersionComparison",
-            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\###PRODUCTCODE###",
+            "KeyPath": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\GitHub Desktop",
             "ValueName": "DisplayVersion",
             "Operator": "greaterThanOrEqual",
             "Value": "<replaced_by_pipeline>",
