@@ -19,7 +19,7 @@
       "AppSetupFileName": "putty_win.msi"
     },
     {
-      "IntuneAppName": "Microsoft PowerBI Desktop",
+      "IntuneAppName": "PowerBI",
       "IntuneAppNamingConvention": "AppNameAndVersion",
       "AppPublisher": "Microsoft",
       "AppSource": "Winget",
