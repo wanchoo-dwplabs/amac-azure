@@ -19,13 +19,13 @@
       "AppSetupFileName": "putty_win.msi"
     },
     {
-      "IntuneAppName": "PowerBI",
+      "IntuneAppName": "Zoom Workplace",
       "IntuneAppNamingConvention": "AppNameAndVersion",
-      "AppPublisher": "Microsoft",
+      "AppPublisher": "Zoom",
       "AppSource": "Winget",
-      "AppID": "Microsoft.PowerBI",
-      "AppFolderName": "MicrosoftPowerBIDesktop",
-      "AppSetupFileName": "powerbi_win_x64.exe"
+      "AppID": "Zoom.Zoom",
+      "AppFolderName": "Zoom",
+      "AppSetupFileName": "zoominstaller_x64.msi"
     }
   ]
 }
