@@ -26,6 +26,15 @@
       "AppID": "Zoom.Zoom",
       "AppFolderName": "Zoom",
       "AppSetupFileName": "zoominstaller_x64.msi"
+    },
+    {
+      "IntuneAppName": "GitHub Desktop",
+      "IntuneAppNamingConvention": "AppNameAndVersion",
+      "AppPublisher": "GitHub, Inc",
+      "AppSource": "Winget",
+      "AppID": "GitHub.GitHubDesktop",
+      "AppFolderName": "GitHubDesktop",
+      "AppSetupFileName": "github_win.exe"
     }
   ]
 }
