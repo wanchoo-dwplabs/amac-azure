@@ -1,3 +1,4 @@
+#AMaC
 # Release notes for IntuneAppFactory
 
 ## 1.1.0
