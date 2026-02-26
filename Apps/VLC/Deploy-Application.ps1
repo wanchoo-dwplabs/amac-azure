@@ -192,6 +192,7 @@ Try {
 
 		## SAMPLE: Uninstall any previous versions of application by referencing the product code and call msiexec /x <product_code>
 		#Execute-MSI -Action "Uninstall" -Path "<Product_GUID>"
+		#End
 		
 		##*===============================================
 		##* POST-UNINSTALLATION
