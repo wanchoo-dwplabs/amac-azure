@@ -190,6 +190,8 @@ Try {
 		## SAMPLE: Uninstall any previous versions of application by calling the command from Uninstall-string
 		Remove-MSIApplications -Name "7-Zip"
 
+		# no folders and registry content is removed on uninstall
+
 		## SAMPLE: Uninstall any previous versions of application by referencing the product code and call msiexec /x <product_code>
 		#Execute-MSI -Action "Uninstall" -Path "<Product_GUID>"
 		
