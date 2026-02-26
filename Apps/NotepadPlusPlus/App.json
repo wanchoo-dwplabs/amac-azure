@@ -23,7 +23,7 @@
         "DeviceRestartBehavior": "suppress"
     },
     "RequirementRule": {
-        "MinimumSupportedWindowsRelease": "W10_22H2",
+        "MinimumSupportedWindowsRelease": "W10_23H2",
         "Architecture": "x64"
     },
     "CustomRequirementRule": [
