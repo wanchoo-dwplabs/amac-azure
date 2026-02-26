@@ -207,6 +207,7 @@ Try {
         	Write-Log -Message "Cleanup Notepad++ Program Files Directory."
         	Remove-Item -Path $InstallPath -Force -Recurse -ErrorAction SilentlyContinue 
         }
+		#end
 		
 		##*===============================================
 		##* POST-UNINSTALLATION
