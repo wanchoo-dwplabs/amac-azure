@@ -207,7 +207,7 @@ Try {
         	Write-Log -Message "Cleanup GitHub Desktop Program Files Directory."
         	Remove-Item -Path $InstallPath -Force -Recurse -ErrorAction SilentlyContinue 
         }
-		
+		#end cleanup
 		##*===============================================
 		##* POST-UNINSTALLATION
 		##*===============================================
