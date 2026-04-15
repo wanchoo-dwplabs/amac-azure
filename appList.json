@@ -35,6 +35,16 @@
       "AppID": "GitHub.GitHubDesktop",
       "AppFolderName": "GitHubDesktop",
       "AppSetupFileName": "github_win.exe"
-    }
+    },
+    {
+    "IntuneAppName": "NotepadPlusPlus AT",
+    "IntuneAppNamingConvention": "AppName",
+    "AppPublisher": "Don Ho",
+    "AppSource": "StorageAccount",
+    "AppID": "",
+    "AppFolderName": "notepadplusplusat",
+    "StorageAccountName": "azurefactoryappsstorage",
+    "StorageAccountContainerName": "notepadplusplusat"
+}
   ]
 }
