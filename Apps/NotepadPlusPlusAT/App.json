@@ -41,8 +41,8 @@
     ],
     "Assignment": [
         {
-            "Type": "VirtualGroup",
-            "GroupName": "AllDevices",
+            "Type": "Security",
+            "GroupName": "Notepad++ UAT",
             "Intent": "available",
             "Notification": "showAll",
             "UseLocalTime": true,
