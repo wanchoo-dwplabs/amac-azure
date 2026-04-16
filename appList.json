@@ -45,15 +45,6 @@
       "AppFolderName": "NotepadPlusPlusAT",
       "StorageAccountName": "azurefactoryappsstorage",
       "StorageAccountContainerName": "notepadplusplusat"
-  },
-  {
-      "IntuneAppName": "Notepad++",
-      "IntuneAppNamingConvention": "AppNameAndVersion",
-      "AppPublisher": "Notepad++ Team",
-      "AppSource": "Winget",
-      "AppID": "Notepad++.Notepad++",
-      "AppFolderName": "NotepadPlusPlus",
-      "AppSetupFileName": "notepad_win_x64.exe"
-    }
+  }
   ]
 }
