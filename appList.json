@@ -10,9 +10,9 @@
       "AppSetupFileName": "github_win.exe"
     },
     {
-      "IntuneAppName": "Notepad++ AutoTest",
+      "IntuneAppName": "Notepad++ (AppTest)",
       "IntuneAppNamingConvention": "AppName",
-      "AppPublisher": "AMaC",
+      "AppPublisher": "AMaC Team",
       "AppSource": "StorageAccount",
       "AppID": "",
       "AppFolderName": "NotepadPlusPlusAT",
