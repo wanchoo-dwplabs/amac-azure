@@ -69,20 +69,20 @@ Process {
             # Copy app specific installer from downloaded app package path to publish folder
             $AppInstallerPath = Join-Path -Path $App.AppSetupFolderPath -ChildPath $App.AppSetupFileName
             $AppInstallerDestinationPath = Join-Path -Path $AppPublishFolderPath -ChildPath "Source\Files\$($App.AppSetupFileName)"
-            if (Test-Path -Path $AppInstallerPath) {
+            <#if (Test-Path -Path $AppInstallerPath) {
                 Write-Output -InputObject "Copying installer file from app package download folder"
                 Write-Output -InputObject "Source path: $($AppInstallerPath)"
                 Write-Output -InputObject "Destination path: $($AppInstallerDestinationPath)"
                 Copy-Item -Path $AppInstallerPath -Destination $AppInstallerDestinationPath -Force -Confirm:$false
             }#endif
-            else {
+            else {#>
                 $AppSetupFolderPathNew = Join-Path -Path $App.AppSetupFolderPath -ChildPath "*"
                 $AppInstallerDestinationPathNew = Join-Path -Path $AppPublishFolderPath -ChildPath "Source\Files"
                 Write-Output -InputObject "Copying installer file along with other associated files from app package download folder"
                 Write-Output -InputObject "Source path: $($AppSetupFolderPathNew)"
                 Write-Output -InputObject "Destination path: $($AppInstallerDestinationPathNew)" 
                 Copy-Item -Path $AppSetupFolderPathNew -Destination $AppInstallerDestinationPathNew -Force -Recurse -Confirm:$false   
-            }#endelse
+            #}#endelse
 
             # Copy all required app specific files from app package folder in Apps root folder to publish folder
             $AppPackageFolderPath = Join-Path -Path $SourceDirectory -ChildPath "Apps\$($App.AppFolderName)"
