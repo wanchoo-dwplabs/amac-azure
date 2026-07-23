@@ -1,2 +1,2 @@
 # AMaC
-AMaC is a set of PowerShell scripts used in an Azure DevOps Pipeline to detect, download, package and publish onboarded applications as a Win32 application to Intune, to ensure the latest version of onboarded applications are available in Intune.
+Application Management as Code (AMaC), is a framework which in a modern way tightly binds each stage of the workflow, lowers the dependency of manual intervention, and assists in a collaborative manner to build an evergreen application ecosystem in an enterprise.
