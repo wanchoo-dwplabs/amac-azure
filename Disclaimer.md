@@ -10,7 +10,6 @@ For the purposes of this Disclaimer:
 
 - Service refers to the Application.
 - You means the individual accessing the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.
-- Application means the software program provided by the Company downloaded by You on any electronic device named IntuneAppFactory.
 
 # Disclaimer
 All information in the Service is provided "as is", with no guarantee of completeness, accuracy, timeliness or of the results obtained from the use of this information, and without warranty of any kind, express or implied, including, but not limited to warranties of performance, merchantability and fitness for a particular purpose.
