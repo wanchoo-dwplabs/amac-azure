@@ -10,10 +10,6 @@
 
 .NOTES
     FileName:    Remove-Files.ps1
-    Author:      Nickolaj Andersen
-    Contact:     @NickolajA
-    Created:     2022-04-04
-    Updated:     2024-04-17
 
     Version history:
     1.0.0 - (2022-04-04) Script created
