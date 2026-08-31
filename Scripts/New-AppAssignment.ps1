@@ -10,10 +10,6 @@
 
 .NOTES
     FileName:    New-AppAssignment.ps1
-    Author:      Nickolaj Andersen
-    Contact:     @NickolajA
-    Created:     2023-10-08
-    Updated:     2023-10-08
 
     Version history:
     1.0.0 - (2023-10-08) Script created
