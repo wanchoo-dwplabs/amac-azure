@@ -25,10 +25,6 @@
 
 .NOTES
     FileName:    Test-TemplatesFolder.ps1
-    Author:      Nickolaj Andersen
-    Contact:     @NickolajA
-    Created:     2022-11-16
-    Updated:     2024-03-04
 
     Version history:
     1.0.0 - (2022-11-16) Script created
