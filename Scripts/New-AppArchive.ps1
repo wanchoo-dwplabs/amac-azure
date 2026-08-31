@@ -10,10 +10,6 @@
 
 .NOTES
     FileName:    New-AppArchive.ps1
-    Author:      Nickolaj Andersen
-    Contact:     @NickolajA
-    Created:     2023-03-11
-    Updated:     2023-03-11
 
     Version history:
     1.0.0 - (2023-03-11) Script created
