@@ -10,10 +10,6 @@
 
 .NOTES
     FileName:    Test-AppList.ps1
-    Author:      Nickolaj Andersen
-    Contact:     @NickolajA
-    Created:     2022-03-29
-    Updated:     2024-08-25
 
     Version history:
     1.0.0 - (2022-03-29) Script created
