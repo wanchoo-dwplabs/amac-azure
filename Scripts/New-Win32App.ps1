@@ -10,10 +10,6 @@
 
 .NOTES
     FileName:    New-Win32App.ps1
-    Author:      Nickolaj Andersen
-    Contact:     @NickolajA
-    Created:     2022-04-20
-    Updated:     2024-03-04
 
     Version history:
     1.0.0 - (2020-09-26) Script created
