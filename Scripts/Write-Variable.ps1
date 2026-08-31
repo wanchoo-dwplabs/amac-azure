@@ -10,10 +10,6 @@
 
 .NOTES
     FileName:    Write-Variable.ps1
-    Author:      Nickolaj Andersen
-    Contact:     @NickolajA
-    Created:     2022-11-29
-    Updated:     2022-11-29
 
     Version history:
     1.0.0 - (2022-11-29) Script created
