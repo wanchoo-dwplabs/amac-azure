@@ -31,8 +31,8 @@ parameters:
     - 'No'
 
 variables:
-- group: IntuneAppFactory
-- group: KeyVault
+- group: AMaC
+- group: AMaCKeyVault
 
 # Stage: 1
 # - Description: Test environment for required files
@@ -116,7 +116,7 @@ stages:
   - validate
   condition: and(succeeded(), eq(dependencies.validate.outputs['validate.test_app_files.shouldrun'], 'true'), or(eq('${{ parameters.operationalMode }}', 'Package'), eq('${{ parameters.operationalMode }}', 'Publish')))
   jobs:
-  - job: check_new_app_version
+  - job: compare
     timeoutInMinutes: 30
     steps:
     - task: DownloadBuildArtifacts@0
@@ -131,7 +131,7 @@ stages:
       displayName: Test-AppList
       inputs:
         filePath: 'Scripts/Test-AppList.ps1'
-        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(SP-IntuneAppFactory-ClientSecret) -StorageAccountAccessKey $(SA-IntuneAppFactory-AccessKey)
+        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(AMaC-IntuneService-Key) -StorageAccountAccessKey $(AMaC-StorageAccount-Key)
         #arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret f478Q~GsrdU-Bm4SZ5IyOJQj6ddOKy_EAUtfLcUX -StorageAccountAccessKey $(SA-IntuneAppFactory-AccessKey)
     - task: PublishBuildArtifacts@1
       name: publish_artifacts
@@ -170,7 +170,7 @@ stages:
       displayName: Save-Installer
       inputs:
         filePath: 'Scripts/Save-Installer.ps1'
-        arguments: -StorageAccountAccessKey $(SA-IntuneAppFactory-AccessKey)
+        arguments: -StorageAccountAccessKey $(AMaC-StorageAccount-Key)
     - task: PublishBuildArtifacts@1
       name: publish_artifacts
       inputs:
@@ -248,7 +248,7 @@ stages:
       displayName: New-AppArchive
       inputs:
         filePath: 'Scripts/New-AppArchive.ps1'
-        arguments: -StorageAccountName $(ArchiveStorageAccountName) -ContainerName $(ArchiveContainerName) -StorageAccountKey $(SA-IntuneAppFactory-AccessKey)
+        arguments: -StorageAccountName $(ArchiveStorageAccountName) -ContainerName $(ArchiveContainerName) -StorageAccountKey $(AMaC-StorageAccount-Key)
     - task: DeleteFiles@1
       name: cleanup_artifacts
       inputs:
@@ -283,7 +283,7 @@ stages:
       displayName: New-Win32App
       inputs:
         filePath: 'Scripts/New-Win32App.ps1'
-        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(SP-IntuneAppFactory-ClientSecret) -WorkspaceID $(ReportWorkspaceID) -SharedKey $(LA-IntuneAppFactory-PrimaryKey)
+        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(AMaC-IntuneService-Key) -WorkspaceID $(ReportWorkspaceID) -SharedKey $(AMaC-LogAnalyticsWkS-Key)
     - task: PublishBuildArtifacts@1
       name: publish_artifacts
       inputs:
@@ -324,7 +324,7 @@ stages:
       displayName: New-AppAssignment
       inputs:
         filePath: 'Scripts/New-AppAssignment.ps1'
-        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(SP-IntuneAppFactory-ClientSecret)
+        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(AMaC-IntuneService-Key)
     - task: DeleteFiles@1
       name: cleanup_artifacts
       inputs:
