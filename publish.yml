@@ -31,17 +31,17 @@ parameters:
     - 'No'
 
 variables:
-- group: IntuneAppFactory
-- group: KeyVault
+- group: AMaC
+- group: AMaCKeyVault
 
 # Stage: 1
 # - Description: Test environment for required files
 # - Input file required: None 
 # - Output file created: None
 stages:
-- stage: test_environment
+- stage: initialise
   jobs:
-  - job: test_environment
+  - job: initialise
     timeoutInMinutes: 5
     steps:
     - task: PowerShell@2
@@ -58,12 +58,12 @@ stages:
 # - Description: Install all required modules and remove files from previous pipeline executions
 # - Input file required: None 
 # - Output file created: None
-- stage: prepare_environment
+- stage: prepare
   dependsOn:
-  - test_environment
-  condition: and(succeeded(), eq(dependencies.test_environment.outputs['test_environment.check_template_files.shouldrun'], 'true'))
+  - initialise
+  condition: and(succeeded(), eq(dependencies.initialise.outputs['initialise.check_template_files.shouldrun'], 'true'))
   jobs: 
-  - job: prepare_environment
+  - job: prepare
     timeoutInMinutes: 15
     steps: 
     - task: PowerShell@2
@@ -80,13 +80,13 @@ stages:
 # - Description: Check that all onboarded apps are properly configured, have the required files necessary for the pipeline to successfully publish the app in Intune
 # - Input file required: None
 # - Output file created: AppsProcessList.json
-- stage: check_app_files
+- stage: validate
   dependsOn:
-  - test_environment
-  - prepare_environment
+  - initialise
+  - prepare
   condition: and(succeeded(), or(eq('${{ parameters.operationalMode }}', 'Verify'), eq('${{ parameters.operationalMode }}', 'Package'), eq('${{ parameters.operationalMode }}', 'Publish')))
   jobs:
-  - job: check_app_files
+  - job: validate
     timeoutInMinutes: 15
     steps:
     - task: PowerShell@2
@@ -109,14 +109,14 @@ stages:
 # - Description: Check for new apps eligible to be processed by pipeline
 # - Input file required: AppsProcessList.json 
 # - Output file created: AppsDownloadList.json
-- stage: check_new_app_version
+- stage: compare
   dependsOn:
-  - test_environment
-  - prepare_environment
-  - check_app_files
-  condition: and(succeeded(), eq(dependencies.check_app_files.outputs['check_app_files.test_app_files.shouldrun'], 'true'), or(eq('${{ parameters.operationalMode }}', 'Package'), eq('${{ parameters.operationalMode }}', 'Publish')))
+  - initialise
+  - prepare
+  - validate
+  condition: and(succeeded(), eq(dependencies.validate.outputs['validate.test_app_files.shouldrun'], 'true'), or(eq('${{ parameters.operationalMode }}', 'Package'), eq('${{ parameters.operationalMode }}', 'Publish')))
   jobs:
-  - job: check_new_app_version
+  - job: compare
     timeoutInMinutes: 30
     steps:
     - task: DownloadBuildArtifacts@0
@@ -131,7 +131,7 @@ stages:
       displayName: Test-AppList
       inputs:
         filePath: 'Scripts/Test-AppList.ps1'
-        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(SP-IntuneAppFactory-ClientSecret) -StorageAccountAccessKey $(SA-IntuneAppFactory-AccessKey)
+        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(AMaC-IntuneService-Key) -StorageAccountAccessKey $(AMaC-StorageAccount-Key)
         #arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret f478Q~GsrdU-Bm4SZ5IyOJQj6ddOKy_EAUtfLcUX -StorageAccountAccessKey $(SA-IntuneAppFactory-AccessKey)
     - task: PublishBuildArtifacts@1
       name: publish_artifacts
@@ -147,15 +147,15 @@ stages:
 # - Description: Download new apps eligible to be processed by pipeline
 # - Input file required: AppsDownloadList.json 
 # - Output file created: AppsPrepareList.json
-- stage: download_new_apps
+- stage: download
   dependsOn:
-  - test_environment
-  - prepare_environment
-  - check_app_files
-  - check_new_app_version
-  condition: and(succeeded(), eq(dependencies.check_new_app_version.outputs['check_new_app_version.test_app_list.shouldrun'], 'true'), or(eq('${{ parameters.operationalMode }}', 'Package'), eq('${{ parameters.operationalMode }}', 'Publish')))
+  - initialise
+  - prepare
+  - validate
+  - compare
+  condition: and(succeeded(), eq(dependencies.compare.outputs['compare.test_app_list.shouldrun'], 'true'), or(eq('${{ parameters.operationalMode }}', 'Package'), eq('${{ parameters.operationalMode }}', 'Publish')))
   jobs:
-  - job: download_new_apps
+  - job: download
     timeoutInMinutes: 120
     steps:
     - task: DownloadBuildArtifacts@0
@@ -170,7 +170,7 @@ stages:
       displayName: Save-Installer
       inputs:
         filePath: 'Scripts/Save-Installer.ps1'
-        arguments: -StorageAccountAccessKey $(SA-IntuneAppFactory-AccessKey)
+        arguments: -StorageAccountAccessKey $(AMaC-StorageAccount-Key)
     - task: PublishBuildArtifacts@1
       name: publish_artifacts
       inputs:
@@ -185,16 +185,16 @@ stages:
 # - Description: Prepare apps by creating packaging folder, copy framework and setup files
 # - Input file required: AppsPrepareList.json 
 # - Output file created: AppsPublishList.json
-- stage: prepare_app_files
+- stage: build
   dependsOn:
-  - test_environment
-  - prepare_environment
-  - check_app_files
-  - check_new_app_version
-  - download_new_apps
-  condition: and(succeeded(), eq(dependencies.download_new_apps.outputs['download_new_apps.save_installer.shouldrun'], 'true'), or(eq('${{ parameters.operationalMode }}', 'Package'), eq('${{ parameters.operationalMode }}', 'Publish')))
+  - initialise
+  - prepare
+  - validate
+  - compare
+  - download
+  condition: and(succeeded(), eq(dependencies.download.outputs['download.save_installer.shouldrun'], 'true'), or(eq('${{ parameters.operationalMode }}', 'Package'), eq('${{ parameters.operationalMode }}', 'Publish')))
   jobs:
-  - job: prepare_app_package_folder
+  - job: build_package_folder
     timeoutInMinutes: 60
     steps:
     - task: DownloadBuildArtifacts@0
@@ -223,17 +223,17 @@ stages:
 # Description: Upload all apps that will be published to Intune to storage account for archival process
 # - Input file required: AppsPublishList.json 
 # - Output file created: None
-- stage: archive_apps
+- stage: archive
   dependsOn:
-  - test_environment
-  - prepare_environment
-  - check_app_files
-  - check_new_app_version
-  - download_new_apps
-  - prepare_app_files
-  condition: and(succeeded(), eq(dependencies.prepare_app_files.outputs['prepare_app_package_folder.create_package_folder.shouldrun'], 'true'), eq('${{ parameters.archiveMode }}', 'Yes'), or(eq('${{ parameters.operationalMode }}', 'Package'), eq('${{ parameters.operationalMode }}', 'Publish')))
+  - initialise
+  - prepare
+  - validate
+  - compare
+  - download
+  - build
+  condition: and(succeeded(), eq(dependencies.build.outputs['build_package_folder.create_package_folder.shouldrun'], 'true'), eq('${{ parameters.archiveMode }}', 'Yes'), or(eq('${{ parameters.operationalMode }}', 'Package'), eq('${{ parameters.operationalMode }}', 'Publish')))
   jobs:
-  - job: archive_apps
+  - job: archive
     timeoutInMinutes: 60
     steps:
     - task: DownloadBuildArtifacts@0
@@ -258,17 +258,17 @@ stages:
 # - Description: Invoke IntuneWin32AppPackager framework script to package and publish new apps to Intune
 # - Input file required: AppsPublishList.json 
 # - Output file created: AppsAssignList.json
-- stage: publish_apps
+- stage: publish
   dependsOn:
-  - test_environment
-  - prepare_environment
-  - check_app_files
-  - check_new_app_version
-  - download_new_apps
-  - prepare_app_files
-  condition: and(succeeded(), eq(dependencies.prepare_app_files.outputs['prepare_app_package_folder.create_package_folder.shouldrun'], 'true'), eq('${{ parameters.operationalMode }}', 'Publish'))
+  - initialise
+  - prepare
+  - validate
+  - compare
+  - download
+  - build
+  condition: and(succeeded(), eq(dependencies.build.outputs['build_package_folder.create_package_folder.shouldrun'], 'true'), eq('${{ parameters.operationalMode }}', 'Publish'))
   jobs:
-  - job: publish_apps
+  - job: publish
     timeoutInMinutes: 120
     steps:
     - task: DownloadBuildArtifacts@0
@@ -298,18 +298,18 @@ stages:
 # - Description: Configure assignments for all applications that were published to Intune
 # - Input file required: AppsAssignList.json (included in AppsPublishedList artifact)
 # - Output file created: None
-- stage: assign_apps
+- stage: assign
   dependsOn:
-  - test_environment
-  - prepare_environment
-  - check_app_files
-  - check_new_app_version
-  - download_new_apps
-  - prepare_app_files
-  - publish_apps
-  condition: and(succeeded(), eq(dependencies.publish_apps.outputs['publish_apps.new_app.shouldrun'], 'true'), eq('${{ parameters.operationalMode }}', 'Publish'))
+  - initialise
+  - prepare
+  - validate
+  - compare
+  - download
+  - build
+  - publish
+  condition: and(succeeded(), eq(dependencies.publish.outputs['publish.new_app.shouldrun'], 'true'), eq('${{ parameters.operationalMode }}', 'Publish'))
   jobs:
-  - job: assign_apps
+  - job: assign
     timeoutInMinutes: 120
     steps:
     - task: DownloadBuildArtifacts@0
