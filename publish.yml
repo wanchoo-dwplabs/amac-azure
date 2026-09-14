@@ -248,7 +248,7 @@ stages:
       displayName: New-AppArchive
       inputs:
         filePath: 'Scripts/New-AppArchive.ps1'
-        arguments: -StorageAccountName $(ArchiveStorageAccountName) -ContainerName $(ArchiveContainerName) -StorageAccountKey $(SA-IntuneAppFactory-AccessKey)
+        arguments: -StorageAccountName $(ArchiveStorageAccountName) -ContainerName $(ArchiveContainerName) -StorageAccountKey $(AMaC-StorageAccount-Key)
     - task: DeleteFiles@1
       name: cleanup_artifacts
       inputs:
@@ -283,7 +283,7 @@ stages:
       displayName: New-Win32App
       inputs:
         filePath: 'Scripts/New-Win32App.ps1'
-        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(SP-IntuneAppFactory-ClientSecret) -WorkspaceID $(ReportWorkspaceID) -SharedKey $(LA-IntuneAppFactory-PrimaryKey)
+        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(AMaC-IntuneService-Key) -WorkspaceID $(ReportWorkspaceID) -SharedKey $(AMaC-LogAnalyticsWkS-Key)
     - task: PublishBuildArtifacts@1
       name: publish_artifacts
       inputs:
@@ -324,7 +324,7 @@ stages:
       displayName: New-AppAssignment
       inputs:
         filePath: 'Scripts/New-AppAssignment.ps1'
-        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(SP-IntuneAppFactory-ClientSecret)
+        arguments: -TenantID $(TenantID) -ClientID $(ClientID) -ClientSecret $(AMaC-IntuneService-Key)
     - task: DeleteFiles@1
       name: cleanup_artifacts
       inputs:
