@@ -94,7 +94,7 @@ stages:
       displayName: Test-AppFiles
       inputs:
         filePath: 'Scripts/Test-AppFiles.ps1'
-        arguments: -ConnectionString $(SA-IntuneAppFactory-AccessKey)
+        arguments: -ConnectionString $(AMaC-StorageAccount-Key)
     - task: PublishBuildArtifacts@1
       name: publish_artifacts
       inputs:
